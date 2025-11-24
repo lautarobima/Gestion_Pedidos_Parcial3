@@ -1,0 +1,191 @@
+:root{
+    --mainColor: #251a2e;
+    --headerColor: #1a0f18;
+    --asideColor: #1a0f18;
+    --windowColor: #1a0f18;
+    --higlight: #F2845C;
+    --higlightSelected: #fc9595;
+    --textColor: #adad99;
+    --textSecundary: #74665A;
+    --texHighlight: #ffffff;
+}
+
+
+html, body {
+
+    align-self: center;
+    justify-self: center;
+    margin: auto;
+
+    background-color: var(--mainColor);
+    margin: 0;
+    padding: 0; 
+    width: 100%;
+    height: 100%;
+    color: var(--textColor);
+
+    overflow: hidden;
+
+}
+
+
+
+div{
+
+    display: flex;
+
+    &.MainDiv{
+        flex-direction: column;
+        height: 100vh;
+        width: 100vw;
+    }
+    &#requestsContainer{
+        flex-direction: column;
+        overflow-y: auto;
+        height: 93vh;
+        width: 100vw;
+        padding-top: 30px;
+        padding-left: 10%;
+        padding-bottom: 2%;
+        gap: 30px;
+        overflow-y:auto;
+        overflow-x: hidden;
+        scrollbar-color: var(--higlight) var(--windowColor);
+    }
+
+    &.filtering{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        min-width: 30%;
+        gap: 20px;
+    }
+
+    &.request{
+        display: grid;
+        background-color: var(--windowColor);
+        grid-template-areas: 
+            'req_id req_name req_status req_list req_list'
+            'req_phone req_address req_price req_list req_list';
+        padding: 10px;
+        width: 90%;
+        max-height: 160px;
+        min-height: 160px;
+        box-shadow: 5px 5px 8px 3px rgba(0, 0, 0, 0.3);
+        align-items: center;
+        border-radius: 10px 0 0 10px;
+        & > p.req_id {grid-area: req_id;}
+        & > p.req_name {grid-area: req_name;}
+        & > div.req_status {grid-area: req_status; display: flex; gap: 10px; align-items: center;}
+        & > p.req_phone {grid-area: req_phone;}
+        & > p.req_address {grid-area: req_address;}
+        & > p.req_price {grid-area: req_price;}
+        & > div.req_list {
+            flex-direction: column;
+            gap: 8px;
+            padding : 10px 0px 10px 15px;
+            grid-area: req_list; overflow-y: auto; overflow-x: hidden;
+            scrollbar-color: var(--mainColor) var(--windowColor);
+            scrollbar-width: thin;
+            align-items: flex-start;
+            max-height: 142px;
+            & > div.req_line { 
+                border-radius: 8px 0 0 8px;
+                width: 100%;
+                align-content: center;
+                max-height: 30px;
+                padding-left: 10px;
+                background: var(--mainColor);
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+}
+
+
+
+header {
+
+    background-color: var(--headerColor);
+    height: 7vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0px 10px;
+
+    & > div.HeaderContainer {
+        display: flex;
+        align-items: center;
+    }
+}
+
+
+button{
+
+    width: 80px;
+    background-color: var(--headerColor);
+    color: var(--higlight);
+    border: 2px solid var(--higlight);
+    
+    margin: 0 10px 0 10px;
+
+    padding: 0;
+    font: inherit;  
+    cursor: pointer;
+    outline: none; 
+    appearance: none;
+
+    box-shadow: 3px 3px 6px 1px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-out;
+}
+button:hover {color: var(--higlightSelected); background-color: var(--windowColor); width: 90px; border: 3px solid var(--higlightSelected);}
+
+
+
+
+
+input{
+    width: 80px;
+    max-height: 40px;
+    background-color: var(--headerColor);
+    color: var(--higlight);
+    border: 2px solid var(--higlight);
+    transition: 0.4s;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 3px 3px 6px 1px rgba(0, 0, 0, 0.3);
+}
+input:hover, input:focus, input:active, input::selection {
+    color: var(--higlightSelected);
+    background-color: var(--windowColor);
+    width: 90px;
+    border: 3px solid var(--higlightSelected);
+}
+select{
+    box-shadow: 3px 3px 6px 1px rgba(0, 0, 0, 0.3);
+    width: 95px;
+    max-height: 30px;
+    background-color: var(--headerColor);
+    color: var(--higlight);
+    border: 2px solid var(--higlight);
+    transition: 0.4s;
+    border-radius: 5px;
+    padding: 5px;
+}
+select:hover, select:focus {
+    color: var(--higlightSelected);
+    background-color: var(--windowColor);
+    width: 97px;
+    border: 3px solid var(--higlightSelected);
+}
+option{
+    background-color: var(--headerColor); 
+    color: var(--higlight);
+    border: 5px solid var(--higlight);
+    padding: 10px;
+    border-radius: 5px;
+}
+option:hover, option:focus {background-color: var(--windowColor); color: var(--higlightSelected);}

@@ -12,7 +12,26 @@
 
 
 <body> 
-    hola mundo
+    <div class="MainDiv">
+        <header>
+            <div class="filtering">
+                <p>Filter by status:</p>
+                <select id="filterStatus" name="status">
+                    <option value="all">all</option>
+                    <option value="pendiente">pendiente</option>
+                    <option valuer="atendido">atendido</option>
+                </select>
+                <p>Search by:</p>
+                <input type="text" id="searchInput" placeholder="name">
+            </div>
+
+            <a href="https://lautarobima.github.io/Menu_Principal_Parcial3/"><button>Log Out</button></a>
+        </header>
+
+
+        <div class="SecondDiv" id="requestsContainer"></div>
+
+    </div>
 </body>
 
 </html>

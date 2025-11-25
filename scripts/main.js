@@ -27,7 +27,7 @@ function mapRequests() {
                 <p class="req_name">name : ${name}</p>
                 <div class="req_status">
                     <p>status : </p>
-                    <select name="status">
+                    <select name="status" onchange="handlePutStatus(this.value, ${id})">
                         <option value="pendiente" ${setStatus(id, "pendiente")}>pendiente</option>
                         <option valuer="atendido" ${setStatus(id, "atendido")}>atendido</option>
                     </select>
@@ -44,9 +44,6 @@ function mapRequests() {
 
 function setStatus(id, status) {
     const request = findById(id);
-    console.log(request.status);
-    console.log(status);
-    console.log(request.status == status);
     if (request.status == status) 
         return `selected`;
     return ``;
@@ -96,6 +93,26 @@ document.getElementById("searchInput").addEventListener("input", (event) => {
 });
 
 
+async function handlePutStatus(status, id) {
+    let requestItem = findById(id); 
+    requestItem.status = status;
+    try {
+        const request = new Request(`https://diligent-victory-production.up.railway.app/requests/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(requestItem)
+        });
+        const response = await fetch(request);
+        const responseData = await response.json();
+        await getRequests();
+        applyFilters();
+    }
+    catch (error) {
+        console.error("Error updating request status:", error);
+    }
+}
 
 
 

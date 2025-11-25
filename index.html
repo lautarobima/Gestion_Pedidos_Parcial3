@@ -16,7 +16,7 @@
         <header>
             <div class="filtering">
                 <p>Filter by status:</p>
-                <select id="filterStatus" name="status">
+                <select id="filterStatus" name="status" onchange="handleSelectFilter(this.value)">
                     <option value="all">all</option>
                     <option value="pendiente">pendiente</option>
                     <option valuer="atendido">atendido</option>

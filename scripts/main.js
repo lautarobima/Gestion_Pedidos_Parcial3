@@ -4,7 +4,6 @@ var filterStatus = "all";
 var searchName = "";
 
 
-
 async function getRequests() {
     const url = "https://diligent-victory-production.up.railway.app/requests";
     try {
@@ -18,9 +17,10 @@ async function getRequests() {
     }
 }
 
+
 function mapRequests() {
     const requestsContainer = document.getElementById("requestsContainer");
-    requestsContainer.innerHTML += visibleRequests.map(
+    requestsContainer.innerHTML = visibleRequests.map(
         ({id, name, phone, address, price, status}) => {
             return `<div class="request">
                 <p class="req_id">request id : ${id}</p>
@@ -72,11 +72,37 @@ function parseCuantity(request) {
 }
 
 
+
+function applyFilters() {
+    if(searchName != "" && filterStatus != "all")
+        visibleRequests = allRequests.filter(request => request.name.toLowerCase().includes(searchName.toLowerCase()) && request.status == filterStatus);
+    else if (filterStatus != "all") 
+        visibleRequests = allRequests.filter(request => request.status == filterStatus);
+    else if (searchName != "")
+        visibleRequests = allRequests.filter(request => request.name.toLowerCase().includes(searchName.toLowerCase()));
+    else
+        visibleRequests = allRequests;
+    mapRequests();
+}
+
+
+function handleSelectFilter(selectedValue) {
+    filterStatus = selectedValue;
+    applyFilters();
+}
+document.getElementById("searchInput").addEventListener("input", (event) => {
+    searchName = event.target.value;
+    applyFilters();
+});
+
+
+
+
+
 async function startApp() {
     await getRequests();
     mapRequests();
 }
-
 
 
 
